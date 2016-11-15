@@ -3,11 +3,19 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.template import Context
+from django.views.decorators.csrf import csrf_exempt
 
 
+@csrf_exempt
 def index(request):
-    context = Context({ 'some_num': 134 })
-    return render(request, 'dummy.html', context)
+    if request.method == "POST":
+        name = request.POST["Name"]
+        context = Context({'name':name})
+        return render(request, 'home.html', context)
+
+    else:
+        context = Context({'name':""})
+        return render(request, 'home.html', context)
 
 #Working on getting field values from html
 #def field_values(request):

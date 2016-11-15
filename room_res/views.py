@@ -11,6 +11,10 @@ def index(request):
 def home(request):
     return render(request, 'home.html')
 
+def test(request):
+	context = Context({'some_num': 134 })
+	return render(request, 'home.html', context)
+
 #Working on getting field values from html
 #def field_values(request):
 #    room = request.GET[Room Id']

@@ -8,6 +8,8 @@ from django.template import Context
 def index(request):
     context = Context({ 'some_num': 134 })
     return render(request, 'dummy.html', context)
+def home(request):
+    return render(request, 'home.html')
 
 #Working on getting field values from html
 #def field_values(request):

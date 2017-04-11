@@ -9,27 +9,22 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def index(request):
     if request.method == "POST":
-        name = request.POST["Name"]
-        time = request.POST["Time"]
-        context = Context({'name':name}, {'time':time})
+        fname = request.POST["fname"]
+        lname = request.POST["lname"]
+        time = request.POST["time"]
+        date = request.POST["date"]
+        room = request.POST["room"]
+        uid = request.POST["uid"]
+        email = request.POST["email"]
+
+        # TODO: Do the DB stuff
+        # TODO: Send confirmation email
+
+        output = fname + " " + lname + " (UID:" + uid + "), you have tentatively booked " + room + \
+                 " for " + date + " at " + time + ". Please check your email to confirm the booking."
+        context = Context({'output': output})
         return render(request, 'index.html', context)
 
     else:
-        context = Context({'name':""}, {'time':""})
+        context = Context({'output': ""})
         return render(request, 'index.html', context)
-
-def test(request):
-	context = Context({'some_num': 134 })
-	return render(request, 'dummy.html', context)
-
-#Working on getting field values from html
-#def field_values(request):
-#    room = request.GET[Room Id']
-#        if room.is_valid():
-#            room_id = room.cleaned_data['value']
-#    time = request.GET['time']
-#        if time.is_valid():
-#            time_value = time.cleaned_data['value']
-#    name = request.GET['name']
-#        if name.is_valid():
-#            name_value = room.cleaned_data['value']

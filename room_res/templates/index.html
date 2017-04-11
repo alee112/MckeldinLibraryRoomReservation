@@ -1,7 +1,16 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script>
+$(document).ready(function() {
+    $('.datepicker').datepicker();
+});
+</script>
+
 <form action="" method="post">
   Room Id:<br>
-  <input type="text" name="Room Id" value=""><br>
-  Time:<select name="Time">
+  <input type="text" name="room" value=""><br>
+  Time:<select name="time">
     <option value="12:00am" selected>12am</option>
     <option value="1:00am">1am</option>
     <option value="2:00am">2am</option>
@@ -27,11 +36,19 @@
     <option value="10:00pm">10pm</option>
     <option value="11:00pm">11pm</option>
     </select><br><br>
-  Name:<br>
-  <input type = "text" name ="Name" value=""><br><br>
+    Date: <br>
+    <input type="text" class="datepicker" name="date"><br>
+  First Name:<br>
+  <input type = "text" name ="fname" value=""><br>
+  Last Name:<br>
+  <input type = "text" name ="lname" value=""><br>
+  UID:<br>
+  <input type = "number" name ="uid" value=""><br>
+  Email:<br>
+  <input type = "email" name ="email" value=""><br><br>
   <input type="submit" value="Submit">
 </form>
 
 <div>
-    {{ name }}
+    {{ output }}
 </div>

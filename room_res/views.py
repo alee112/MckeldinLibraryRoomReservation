@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Student
 
 # Create your views here.
 from django.http import HttpResponse
@@ -18,6 +19,9 @@ def index(request):
         email = request.POST["email"]
 
         # TODO: Do the DB stuff
+        student = Student(UID=uid, first_name=fname, last_name=lname)
+        student.save()
+
         # TODO: Send confirmation email
 
         output = fname + " " + lname + " (UID:" + uid + "), you have tentatively booked " + room + \

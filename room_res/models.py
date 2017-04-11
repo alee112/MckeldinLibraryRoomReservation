@@ -12,7 +12,6 @@ class Student(models.Model):
     def __str__(self):
         return self.first_name +','+ last_name
 
-
     # class Room(models.Model):
     # 	Name = models.CharField(max_length=50)
     # 	def __str__(self):

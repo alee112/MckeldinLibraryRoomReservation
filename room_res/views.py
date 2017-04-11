@@ -10,11 +10,12 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     if request.method == "POST":
         name = request.POST["Name"]
-        context = Context({'name':name})
+        time = request.POST["Time"]
+        context = Context({'name':name}, {'time':time})
         return render(request, 'index.html', context)
 
     else:
-        context = Context({'name':""})
+        context = Context({'name':""}, {'time':""})
         return render(request, 'index.html', context)
 
 def test(request):

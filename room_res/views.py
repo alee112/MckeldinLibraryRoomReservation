@@ -14,7 +14,6 @@ def index(request):
 
         #coun tneeds to be updated otherwise we cant insert anymore
 
-        count = 0
         fname = request.POST["fname"]
         lname = request.POST["lname"]
         time = request.POST["time"]
@@ -27,11 +26,14 @@ def index(request):
         # student = Student(UID=uid, first_name=fname, last_name=lname)
         # student.save()
 
-        room = Reservations(res_number = count,name = fname + lname,room = room,date = date,start_time = time,
+        last_res = Reservations.objects.all().order_by("res_number").last()
+        id = 0
+        if last_res is not None:
+            id = last_res.res_number + 1
+
+        room = Reservations(res_number = id, name = fname + lname, room = room, date = date, start_time = time,
             end_time = time)
         room.save()
-
-        count += 1
 
         # TODO: Send confirmation email
 

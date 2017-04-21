@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Reservations
 
+from . import email_lib
+
 # Create your views here.
 from django.http import HttpResponse
 from django.template import Context
@@ -36,14 +38,15 @@ def index(request):
         room.save()
 
         # TODO: Send confirmation email
+        
 
         # output = fname + " " + lname + " (UID:" + uid + "), you have tentatively booked " + room + \
         #          " for " + date + " at " + time + ". Please check your email to confirm the booking."
 
         output = "confirmed"
-        context = Context({'output': output})
+        context = {'output': output}
         return render(request, 'index.html', context)
 
     else:
-        context = Context({'output': ""})
+        context = {'output': ""}
         return render(request, 'index.html', context)

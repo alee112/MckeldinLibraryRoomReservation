@@ -1,0 +1,114 @@
+Art Library Seminar Room:
+Seminar Room M2213A
+
+EPSL Group Study Rooms:
+Tesla Room (EPSL)
+Carver Room (EPSL)
+Chatelet Room (EPSL)
+Einstein Room (EPSL)
+
+MS Performing Arts Library Seminar Room:
+2515C
+
+Research Commons:
+Adjunct Desk 2
+Adjunct Desk 3
+Adjunct Desk 1
+
+Study Carrels 4 hours:
+6211 Left Side
+6211 Right Side
+6213
+6215
+6217 Left Side
+6217 Right Side
+6219 Left Side
+6219 Right Side
+6221
+6247
+6249 Left Side
+6249 Right Side
+6253
+6255
+6257 Left Side
+6257 Right Side
+6259 Left Side
+6259 Right Side
+4211 Left Side
+4217 Left Side
+4219 Left Side
+4249 Left Side
+4257 Right Side
+4257 Left Side
+4259 Right Side
+4259 Left Side
+4251 Left Side
+4255
+4211 Right Side
+4213
+4215
+4217 Right Side
+4219 Right Side
+4249 Right Side
+4251 Right Side
+4253
+
+Study Carrels 8 hours:
+6223 Left Side
+6223 Right Side
+6225 Left Side
+6225 Right Side
+6227 Left Side
+6227 Right Side
+6229 Left Side
+6229 Right Side
+6231 Left Side
+6231 Right Side
+6235 Left Side
+6235 Right Side
+6237 Left Side
+6237 Right Side
+6239 Left Side
+6239 Right Side
+6241 Left Side
+6241 Right Side
+6243 Left Side
+6243 Right Side
+6245 Left Side
+6245 Right Side
+4223 Left Side
+4225 Left Side
+4227 Left Side
+4229 Left Side
+4231 Left Side
+4241 Left Side
+4225 Right Side
+4243 Left Side
+4227 Right Side
+4245 Left Side
+4229 Right Side
+4231 Right Side
+4239 Right Side
+4241 Right Side
+4243 Right Side
+4245 Right Side
+4223 Right Side
+
+TLC Group Study Rooms:
+Room 2100A
+Room 2100B
+Room 2100C
+Room 2100E
+Room 2100F
+Room 2100G
+Room 2100H
+Room 2100J
+Room 2100L
+Room 2100K
+Room 2100M
+Room 2104
+
+TLC Makerspace
+3D Printer 1
+3D Printer 2
+3D Scanner

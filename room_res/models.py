@@ -8,13 +8,23 @@ class Reservations(models.Model):
     res_number = models.IntegerField(primary_key = True)
     name = models.CharField(max_length = 50)
     room = models.CharField(max_length = 50)
-    date = models.CharField(max_length = 50)
-    start_time = models.CharField(max_length = 50)
-    end_time = models.CharField(max_length = 50)
+    datetime = models.DateTimeField(max_length = 50)
+    reserved = models.BooleanField(default=False)
+    
 
 
     def __str__(self):
         return res_number + ''
+
+
+class Rooms(models.Model):
+    room = models.CharField(max_length = 50)
+    category = models.CharField(max_length = 50)
+
+    def __str__(self):
+        return room + ''
+
+
 
     # class Room(models.Model):
     # 	Name = models.CharField(max_length=50)

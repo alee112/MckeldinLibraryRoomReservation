@@ -1,0 +1,10 @@
+Hello {fname} {lname},
+
+We have confirmed your booking for {room} on {date}, from {start_time} to {end_time}.
+
+Please make sure to stop by the front desk when you arrive to finalize your reservation.
+If you arrive more than 10 minutes late, your booking may be forfeited.
+
+Thank you for using the University of Maryland's libraries, and have a great day!
+
+University of Maryland Libraries

@@ -3,17 +3,18 @@
 # 
 # Requires valid SMTP configuration to run!
 # 
+import mimetypes
 import smtplib
+import os
 import re
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 try:
     # Python 3
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.text import MIMEText
     from configparser import ConfigParser, NoSectionError, NoOptionError
 except ImportError:
-    # Python 2
-    from email.MIMEMultipart import MIMEMultipart
-    from email.MIMEText import MIMEText
     from ConfigParser import ConfigParser, NoSectionError, NoOptionError
 from email.errors import MessageError
 
@@ -79,7 +80,7 @@ def get_email_credentials():
 
 def send_email(from_email = None, to_email = None,
     subject = None, plain_text_email = None,
-    html_email = None):
+    html_email = None, attachments = None):
     """Send an email out, given the email specific parameters.
     
     Send an email out.
@@ -98,6 +99,20 @@ def send_email(from_email = None, to_email = None,
             message. If set to None, no plain text email will be sent.
         html_email (str): String specifying the HTML email message. If
             set to None, no HTML email will be sent.
+        attachments (list of str or dict): List of strings and/or dicts
+            specifying the attachments to send.
+            
+            For external files that need to be read, specify a string of
+            the file name within the list. If you want to send a string
+            as a file, specify a dictionary in the following format:
+            { "filename" : "DATA" }, e.g. { "cool.txt" : "Cool beans" }.
+            
+            Multiple filename/data (key/value) pairs can exist within
+            this dictionary.
+            
+            For image attachments, you may reference them with
+            src="cid:image-file-name". (Content-ID for image attachments
+            is automatically set to the filename.)
     
     Returns:
         bool: boolean specifying whether the email was successfully sent
@@ -139,6 +154,32 @@ def send_email(from_email = None, to_email = None,
     else:
         raise Exception("Invalid to_email specified! Got %s but requested str/list..." % (str(type(to_email))))
     
+    def add_attachment(filename, data):
+        ctype, encoding = mimetypes.guess_type(filename)
+        if ctype is None or encoding is not None:
+            ctype = "application/octet-stream"
+        
+        maintype, subtype = ctype.split("/", 1)
+        
+        # http://stackoverflow.com/a/23171609/1094484
+        if maintype == "text":
+            # Note: we should handle calculating the charset
+            if type(data) == bytes:
+                data = data.decode("utf-8")
+            part = MIMEText(data, _subtype=subtype)
+        elif maintype == "image":
+            part = MIMEImage(data, _subtype=subtype)
+            part.add_header("Content-ID", "<%s>" % filename)
+        elif maintype == "audio":
+            part = MIMEAudio(data, _subtype=subtype)
+        else:
+            part = MIMEBase(maintype, subtype)
+            part.set_payload(data)
+            encoders.encode_base64(part)
+        
+        part.add_header('Content-Disposition', 'attachment; filename="{0}"'.format(filename))
+        msg.attach(part)
+    
     try:
         msg = MIMEMultipart('alternative')
         msg['Subject'] = subject
@@ -150,6 +191,16 @@ def send_email(from_email = None, to_email = None,
             
         if html_email:
             msg.attach(MIMEText(html_email, "html"))
+        
+        for attachment in attachments:
+            if type(attachment) == str:
+                add_attachment(os.path.basename(attachment), open(attachment, "rb").read())
+            elif type(attachment) == dict:
+                for filename in attachment:
+                    add_attachment(filename, attachment[filename])
+            else:
+                raise Exception("Invalid attachment specified! Got %s but requested str/dict..." % (str(type(attachment))))
+        
     except MessageError:
         # This is a dev error, let's raise hell
         raise

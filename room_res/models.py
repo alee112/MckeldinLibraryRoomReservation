@@ -13,16 +13,14 @@ class Reservations(models.Model):
     
 
 
-    def __str__(self):
-        return res_number + ''
+   
 
 
 class Rooms(models.Model):
-    room = models.CharField(max_length = 50)
+    room = models.CharField(max_length = 50,primary_key = True)
     category = models.CharField(max_length = 50)
 
-    def __str__(self):
-        return room + ''
+    
 
 
 

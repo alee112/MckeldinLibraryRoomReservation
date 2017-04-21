@@ -8,7 +8,7 @@ class Reservations(models.Model):
     res_number = models.IntegerField(primary_key = True)
     name = models.CharField(max_length = 50)
     room = models.CharField(max_length = 50)
-    datetime = models.DateTimeField(max_length = 50)
+    datetime = models.DateTimeField()
     reserved = models.BooleanField(default=False)
     
 

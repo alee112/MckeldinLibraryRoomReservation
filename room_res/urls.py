@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 
 from . import views
+from .script import onstart
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
 ]
+
+onstart()

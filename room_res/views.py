@@ -35,8 +35,7 @@ def index(request):
         if last_res is not None:
             id = last_res.res_number + 1
 
-        room = Reservations(res_number = id, name = fname + lname, room = room, date = date, start_time = time,
-            end_time = time)
+        room = Reservations(res_number = id, name = fname + lname, room = room, date = date, start_time = time)
         room.save()
 
         # TODO: Send confirmation email
